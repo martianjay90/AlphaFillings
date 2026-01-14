@@ -36,6 +36,16 @@ function sha256(input: string): string {
 }
 
 /**
+ * XML 문자열을 해시 계산 전에 정규화
+ * - BOM 제거: 문자열 시작의 \uFEFF 제거
+ * - 줄바꿈 통일: \r\n 및 \r 를 모두 \n 으로 변환
+ * - 파일 끝 공백 정리: trimEnd() 적용
+ */
+function normalizeXmlForHash(s: string): string {
+  return s.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trimEnd()
+}
+
+/**
  * XBRL XML 문자열로부터 Bundle 생성
  */
 export function buildBundleFromXbrlXml(
@@ -123,8 +133,8 @@ export async function buildBundleFromZip(
   const extractedContentBuffer = await extractedFile.arrayBuffer()
   const extractedContent = new TextDecoder('utf-8').decode(extractedContentBuffer)
 
-  // XML 해시 계산
-  const xmlHash = sha256(extractedContent)
+  // XML 해시 계산 (정규화 후)
+  const xmlHash = sha256(normalizeXmlForHash(extractedContent))
 
   // 캐시에 저장 (다음 호출 시 재사용)
   zipXmlCache.set(zipPath, {
@@ -171,8 +181,8 @@ export async function extractXbrlXmlHashFromZip(
   const extractedContentBuffer = await extractedFile.arrayBuffer()
   const extractedContent = new TextDecoder('utf-8').decode(extractedContentBuffer)
 
-  // XML 해시 계산
-  const xmlHash = sha256(extractedContent)
+  // XML 해시 계산 (정규화 후)
+  const xmlHash = sha256(normalizeXmlForHash(extractedContent))
 
   // zipXmlCache에 저장 (다음 호출 시 재사용)
   zipXmlCache.set(zipPath, {
@@ -201,7 +211,7 @@ export async function loadXbrlXmlFromFixture(
 
     // 캐시 없음: 파일 읽기 (최초 1회만)
     const xmlContent = readFileSync(fixturePath, 'utf-8')
-    const xmlHash = sha256(xmlContent)
+    const xmlHash = sha256(normalizeXmlForHash(xmlContent))
 
     // 캐시에 저장 (다음 호출 시 재사용)
     xbrlXmlCache.set(fixturePath, {
@@ -235,8 +245,8 @@ export async function loadXbrlXmlFromFixture(
     const extractedContentBuffer = await extractedFile.arrayBuffer()
     const extractedContent = new TextDecoder('utf-8').decode(extractedContentBuffer)
 
-    // XML 해시 계산
-    const xmlHash = sha256(extractedContent)
+    // XML 해시 계산 (정규화 후)
+    const xmlHash = sha256(normalizeXmlForHash(extractedContent))
 
     // zipXmlCache에 저장 (다음 호출 시 재사용)
     zipXmlCache.set(fixturePath, {
