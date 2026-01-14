@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`스모크 테스트 (삼성전자) SAMSUNG_Q3_2025_XBRL: 3회 반복 동일성 + UI 카드 snapshot 1`] = `
+{
+  "capex": 35972891000000,
+  "cash": 53399483000000,
+  "debtRatio": 26.640313,
+  "equity": 413501494000000,
+  "fcf": 20542605000000,
+  "netDebt": -22422899000000,
+  "netMarginContinuing": 10.66239,
+  "ocf": 56515496000000,
+  "opm": 9.812542,
+  "period": {
+    "endDate": "2025-09-30",
+    "fiscalYear": 2025,
+    "periodType": "YTD",
+    "quarter": 3,
+    "startDate": "2025-01-01",
+  },
+  "policy": {
+    "capexComponentsIncluded": {
+      "intangible": true,
+      "ppe": true,
+    },
+    "capexPolicy": "PPE_ONLY",
+    "epsScope": "TOTAL",
+    "fcfDefinition": "OCF_MINUS_CAPEX",
+    "roeDefinition": "CUMULATIVE_END_EQUITY",
+  },
+  "revenue": 239768567000000,
+  "revenueYoY": 6.524685,
+  "roe": 6.18258,
+}
+`;

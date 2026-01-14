@@ -1,0 +1,223 @@
+{
+  "description": "레벨2 동등성 검증용 골든 케이스",
+  "input": {
+    "statements": [
+      {
+        "period": {
+          "fiscalYear": 2023,
+          "quarter": 0,
+          "periodType": "FY",
+          "endDate": "2023-12-31"
+        },
+        "income": {
+          "revenue": {
+            "name": "매출액",
+            "value": 1000000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:Revenue",
+                  "contextRef": "ctx-2023"
+                },
+                "quote": "매출액: 1,000,000,000,000"
+              }
+            ]
+          },
+          "operatingIncome": {
+            "name": "영업이익",
+            "value": 100000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          },
+          "netIncome": {
+            "name": "당기순이익",
+            "value": 80000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:ProfitLoss",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          }
+        },
+        "cashflow": {
+          "operatingCashFlow": {
+            "name": "영업현금흐름",
+            "value": 120000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:CashFlowsFromUsedInOperatingActivities",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          },
+          "capitalExpenditure": {
+            "name": "CAPEX",
+            "value": 20000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:PaymentsToAcquirePropertyPlantAndEquipment",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          },
+          "freeCashFlow": {
+            "name": "FCF",
+            "value": 100000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "calculated",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          }
+        },
+        "balance": {
+          "totalAssets": {
+            "name": "자산총계",
+            "value": 2000000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:Assets",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          },
+          "totalLiabilities": {
+            "name": "부채총계",
+            "value": 1000000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:Liabilities",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          },
+          "totalEquity": {
+            "name": "자본총계",
+            "value": 1000000000000,
+            "meta": {
+              "currency": "KRW",
+              "unit": "원",
+              "signConvention": "asReported"
+            },
+            "evidence": [
+              {
+                "sourceType": "XBRL",
+                "fileId": "file-0-test",
+                "locator": {
+                  "tag": "ifrs-full:Equity",
+                  "contextRef": "ctx-2023"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "companyName": "테스트 회사",
+    "ticker": "TEST"
+  },
+  "expected": {
+    "derivedMetrics": [
+      {
+        "fcf": {
+          "value": 100000000000,
+          "meta": {
+            "currency": "KRW",
+            "unit": "원",
+            "signConvention": "asReported"
+          }
+        },
+        "fcfMargin": 10.0,
+        "opm": 10.0
+      }
+    ],
+    "stepOutputs": {
+      "count": 11,
+      "checkpointCategories": [
+        "현금창출력 점검",
+        "투자 vs 회수 구조 점검",
+        "수요/채널 리스크",
+        "정상화 필요",
+        "다음 분기 확인 포인트"
+      ]
+    },
+    "evidenceRequired": true,
+    "periodLabels": ["FY"]
+  }
+}

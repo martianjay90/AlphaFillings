@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`스모크 테스트 (LG전자) LG_Q3_2025_XBRL: 3회 반복 동일성 + UI 카드 snapshot 1`] = `
+{
+  "capex": 1850073000000,
+  "cash": 7958078000000,
+  "debtRatio": 149.52138,
+  "equity": 26919591000000,
+  "fcf": 1820277000000,
+  "netDebt": 5162637000000,
+  "netMarginContinuing": 2.986776,
+  "ocf": 3670350000000,
+  "opm": 3.959344,
+  "period": {
+    "endDate": "2025-09-30",
+    "fiscalYear": 2025,
+    "periodType": "YTD",
+    "quarter": 3,
+    "startDate": "2025-01-01",
+  },
+  "policy": {
+    "capexComponentsIncluded": {
+      "intangible": true,
+      "ppe": true,
+    },
+    "capexPolicy": "PPE_ONLY",
+    "epsScope": "CONTINUING",
+    "fcfDefinition": "OCF_MINUS_CAPEX",
+    "roeDefinition": "CUMULATIVE_END_EQUITY",
+  },
+  "revenue": 65348728000000,
+  "revenueYoY": 0.588026,
+  "roe": 7.250556,
+}
+`;
